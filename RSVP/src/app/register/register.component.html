@@ -1,0 +1,39 @@
+<h1>Register</h1>
+
+<form #f="ngForm">
+  <div>
+    <label>
+      Name:
+      <input type="text" name="guestName" required [(ngModel)]="newGuest.Name">
+    </label>
+  </div>
+  <div>
+    <label>
+      Will attend:
+      <input type="checkbox" name="isPresent" [(ngModel)]="newGuest.IsPresent">
+    </label>
+  </div>
+  <span [hidden]="!newGuest.IsPresent">
+    <div>
+      <label>
+        Comment:
+        <input type="text" name="comment" [(ngModel)]="newGuest.Comment">
+      </label>
+    </div>
+    <div>
+      <label>
+        Bring a friend:
+        <input type="checkbox" name="bringFriend" [(ngModel)]="newGuest.AddGuest">
+      </label>
+    </div>
+    <div [hidden]="!newGuest.AddGuest">
+      <label>
+        Name of friend:
+        <input type="text" name="friendName" [required]="newGuest.AddGuest" [(ngModel)]="newGuest.AddGuestName">
+      </label>
+    </div>
+  </span>
+  <div>
+    <button [disabled]="!f.valid || f.pristine" (click)="saveGuest()">Save</button>
+  </div>
+</form>

@@ -1,0 +1,23 @@
+<h1>Guest List</h1>
+
+<table id="guests">
+  <tbody>
+    <th>Name</th>
+    <th>At the Party</th>
+    <th>Comment</th>
+    <th>Brings a friend</th>
+    <th>Name of friend</th>
+    <tr *ngFor="let entry of this.dataFromServer?.records">
+      <td>{{entry.fields.Name}}</td>
+      <td>{{entry.fields.IsPresent}}</td>
+      <td>{{entry.fields.Comment}}</td>
+      <td>{{entry.fields.AddGuest}}</td>
+      <td>{{entry.fields.AddGuestName}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<label>
+  Number of guests:
+  <input id="count-txt" type="text" [value]="getAmountOfGuests()" disabled>
+</label>
