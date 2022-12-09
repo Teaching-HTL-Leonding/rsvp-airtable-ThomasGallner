@@ -12,6 +12,7 @@ export interface Record {
 
 export interface Fields {
   Name: string;
+  WillAttend: boolean;
   IsPresent: boolean;
   Comment: string;
   AddGuest: boolean;
@@ -33,6 +34,7 @@ export class RegisterComponent {
   public resetNewGuest() {
     this.newGuest = {
       Name: '',
+      WillAttend: false,
       IsPresent: false,
       Comment: '',
       AddGuest: false,

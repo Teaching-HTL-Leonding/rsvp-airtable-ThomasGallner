@@ -1,18 +1,29 @@
 <h1>Guest List</h1>
 
+<label>
+  Filter name:
+  <input id="filterName" type="text" [(ngModel)]="filterName" (ngModelChange)="loadGuests()">
+</label>
+
+<label>
+  Only show present guests:
+  <input id="onlyShowPresent" type="checkbox" [(ngModel)]="onlyShowPresentGuests" (ngModelChange)="loadGuests()">
+</label>
+
 <table id="guests">
   <tbody>
     <th>Name</th>
-    <th>At the Party</th>
+    <th>Will attend</th>
     <th>Comment</th>
     <th>Brings a friend</th>
     <th>Name of friend</th>
     <tr *ngFor="let entry of this.dataFromServer?.records">
       <td>{{entry.fields.Name}}</td>
-      <td>{{entry.fields.IsPresent}}</td>
+      <td>{{entry.fields.WillAttend}}</td>
       <td>{{entry.fields.Comment}}</td>
       <td>{{entry.fields.AddGuest}}</td>
       <td>{{entry.fields.AddGuestName}}</td>
+      <td [hidden]="!entry.fields.WillAttend"><button [disabled]="entry.fields.IsPresent" id="isPresent" (click)="setGuestAsPresent(entry.id!, entry.fields)">Is Present</button></td>
     </tr>
   </tbody>
 </table>
